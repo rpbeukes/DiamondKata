@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using DiamondKataConsole;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace DiamondKataTests
 {
@@ -15,23 +17,36 @@ namespace DiamondKataTests
         [TestMethod]
         public void Test_A_Diamond()
         {
-            
+
             //  A
             //A   A
             //  A 
-            
-            var expeactedDiamond = new char[3, 3];
 
-            expeactedDiamond[0, 1] = 'A';
-            expeactedDiamond[1, 0] = 'A';
-            expeactedDiamond[2, 1] = 'A';
-            expeactedDiamond[1, 2] = 'A';
+            //var expeactedDiamond = new char[3, 3];
+
+            //expeactedDiamond[0, 1] = 'A';
+            //expeactedDiamond[1, 0] = 'A';
+            //expeactedDiamond[2, 1] = 'A';
+            //expeactedDiamond[1, 2] = 'A';
+
+            var expectedList = new List<DiamondCharacter>() {
+                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 0) },
+                new DiamondCharacter { Value = 'A', Coordinate = new Point(0, 1) },
+                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 2) },
+                new DiamondCharacter { Value = 'A', Coordinate = new Point(2, 1) }
+            };
 
             var sut = new DiamondEngine('A');
-            var actualDiamond = sut.Create();
+            var actualList = sut.Create();
 
-            var equalArrays = ArrayUtils.ArraysEqual(expeactedDiamond, actualDiamond);
-            equalArrays.ShouldBeTrue();
+            foreach (var expected in expectedList)
+            {
+                var find = actualList.Where(actual => actual.Value == expected.Value && actual.Coordinate.Equals(expected.Coordinate));
+                find.Count().ShouldBe(1, $"Missing value - Expected '{expected.Value}' at ({expected.Coordinate.X},{expected.Coordinate.Y}) but was not found");
+                find.First().Value.ShouldBe(expected.Value, $"Chracter mismatch at ({expected.Coordinate.X},{expected.Coordinate.Y})");
+                find.First().Coordinate.X.ShouldBe(expected.Coordinate.X, $"Coordinate ({expected.Coordinate.X},{expected.Coordinate.Y})");
+                find.First().Coordinate.Y.ShouldBe(expected.Coordinate.Y, $"Coordinate ({expected.Coordinate.X},{expected.Coordinate.Y})");
+            }
         }
 
         /*
