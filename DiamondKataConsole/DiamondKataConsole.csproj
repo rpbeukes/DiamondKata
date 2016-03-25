@@ -7,8 +7,8 @@
     <ProjectGuid>{2FFADBDC-8333-4DC3-93EB-8F1126D2A7B0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DiamondKata</RootNamespace>
-    <AssemblyName>DiamondKata</AssemblyName>
+    <RootNamespace>DiamondKataConsole</RootNamespace>
+    <AssemblyName>DiamondKataConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiamondEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

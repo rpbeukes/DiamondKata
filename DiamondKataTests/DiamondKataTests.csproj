@@ -54,11 +54,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ArrayUtils.cs" />
+    <Compile Include="ArrayUtilsTest.cs" />
+    <Compile Include="DiamondEngineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiamondKataConsole\DiamondKataConsole.csproj">
+      <Project>{2ffadbdc-8333-4dc3-93eb-8f1126d2a7b0}</Project>
+      <Name>DiamondKataConsole</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
