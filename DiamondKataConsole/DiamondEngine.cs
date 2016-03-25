@@ -38,7 +38,10 @@ namespace DiamondKataConsole
                     list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(2, 1) });
                     break;
                 case 'B':
-
+                    list.Add(new DiamondCharacter() { Value = 'A', Coordinate = new Point(1, 0) });
+                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(0, 1) });
+                    list.Add(new DiamondCharacter() { Value = 'A', Coordinate = new Point(1, 2) });
+                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(2, 1) });
                     break;
                 default:
                     //for (int i = 0; i < MatrixCount; i++)

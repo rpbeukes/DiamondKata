@@ -39,35 +39,38 @@ namespace DiamondKataTests
             var sut = new DiamondEngine('A');
             var actualList = sut.Create();
 
-            foreach (var expected in expectedList)
-            {
-                var find = actualList.Where(actual => actual.Value == expected.Value && actual.Coordinate.Equals(expected.Coordinate));
-                find.Count().ShouldBe(1, $"Missing value - Expected '{expected.Value}' at ({expected.Coordinate.X},{expected.Coordinate.Y}) but was not found");
-                find.First().Value.ShouldBe(expected.Value, $"Chracter mismatch at ({expected.Coordinate.X},{expected.Coordinate.Y})");
-                find.First().Coordinate.X.ShouldBe(expected.Coordinate.X, $"Coordinate ({expected.Coordinate.X},{expected.Coordinate.Y})");
-                find.First().Coordinate.Y.ShouldBe(expected.Coordinate.Y, $"Coordinate ({expected.Coordinate.X},{expected.Coordinate.Y})");
-            }
+            AssertLists(expectedList, actualList);
         }
 
-        /*
+        
         [TestMethod]
         public void Test_B_Diamond()
         {
-            
-           //  A
-           //B   B
-           //  A 
-           
 
-            var diamondBData = new string[3, 3];
+            //  A
+            //B   B
+            //  A 
 
-            diamondBData[0, 1] = "A";
-            diamondBData[1, 0] = "B";
-            diamondBData[2, 1] = "A";
-            diamondBData[1, 2] = "B";
+            //var diamondBData = new string[3, 3];
 
+            //diamondBData[0, 1] = "A";
+            //diamondBData[1, 0] = "B";
+            //diamondBData[2, 1] = "A";
+            //diamondBData[1, 2] = "B";
+            var expectedList = new List<DiamondCharacter>() {
+                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 0) },
+                new DiamondCharacter { Value = 'B', Coordinate = new Point(0, 1) },
+                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 2) },
+                new DiamondCharacter { Value = 'B', Coordinate = new Point(2, 1) }
+            };
+
+            var sut = new DiamondEngine('B');
+            var actualList = sut.Create();
+
+            AssertLists(expectedList, actualList);
         }
 
+        /*
         [TestMethod]
         public void Test_C_Diamond()
         {
@@ -87,5 +90,16 @@ namespace DiamondKataTests
             diamondCData[1, 2] = "B";
         }
     */
+        private static void AssertLists(List<DiamondCharacter> expectedList, IEnumerable<DiamondCharacter> actualList)
+        {
+            foreach (var expected in expectedList)
+            {
+                var find = actualList.Where(actual => actual.Value == expected.Value && actual.Coordinate.Equals(expected.Coordinate));
+                find.Count().ShouldBe(1, $"Missing value - Expected '{expected.Value}' at ({expected.Coordinate.X},{expected.Coordinate.Y}) but was not found");
+                find.First().Value.ShouldBe(expected.Value, $"Chracter mismatch at ({expected.Coordinate.X},{expected.Coordinate.Y})");
+                find.First().Coordinate.X.ShouldBe(expected.Coordinate.X, $"Coordinate ({expected.Coordinate.X},{expected.Coordinate.Y})");
+                find.First().Coordinate.Y.ShouldBe(expected.Coordinate.Y, $"Coordinate ({expected.Coordinate.X},{expected.Coordinate.Y})");
+            }
+        }
     }
 }
