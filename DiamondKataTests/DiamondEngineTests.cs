@@ -61,6 +61,15 @@ namespace DiamondKataTests
             //C       C
             //  B   B
             //    A
+            char[,] arr = new char[5, 5]
+                              {
+                               { '\0','\0',  'A', '\0','\0' },
+                               { '\0', 'B', '\0', 'B' ,'\0' },
+                               {  'C','\0', '\0', '\0','C'  },
+                               { '\0', 'B', '\0',  'B','\0' },
+                               { '\0', '\0', 'A', '\0','\0' }
+                              };
+
             var expectedList = new List<DiamondCharacterPoint>() {
                 new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(0, 2) },
                 new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 1) },
