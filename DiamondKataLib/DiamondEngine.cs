@@ -49,44 +49,44 @@ namespace DiamondKataLib
                     list.Add(new DiamondCharacterPoint() { Value = _patternChar, Coordinate = new Point(2, 1) });
                     break;
                 default:
-                    for (int i = 0; i < MatrixCount + 1; i++)
+                    for (int x = 0; x < MatrixCount + 1; x++)
                     {
-                        var createSingelCharPoint = i % MatrixCount == 0;
+                        var createSingelCharPoint = x % MatrixCount == 0;
                         if (createSingelCharPoint)
                         {
                             //add one char
-                            var point = new Point(i, _centre);
+                            var point = new Point(x, _centre);
                             list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
                         }
                         else
                         {
                             //add two chars
-                            var yVal = i % _centre;
+                            var yVal = x % _centre;
                             if (yVal != 0)
                             {
-                                if (i < _centre)
+                                if (x < _centre)
                                 {
-                                    var point = new Point(i, _centre - yVal);
+                                    var point = new Point(x, _centre - yVal);
                                     list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
 
-                                    point = new Point(i, _centre + yVal);
+                                    point = new Point(x, _centre + yVal);
                                     list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
                                 }
                                 else
                                 {
-                                    var point = new Point(i, (_centre - i) * -1);
+                                    var point = new Point(x, (_centre - x) * -1);
                                     list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
 
-                                    point = new Point(i, MatrixCount + (_centre - i));
+                                    point = new Point(x, MatrixCount + (_centre - x));
                                     list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
                                 }
                             }
                             else
                             {
-                                var point = new Point(i, 0);
+                                var point = new Point(x, 0);
                                 list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
 
-                                point = new Point(i, MatrixCount);
+                                point = new Point(x, MatrixCount);
                                 list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
                             }
                         }
