@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiamondChracter.cs" />
+    <Compile Include="CycleCharacter.cs" />
+    <Compile Include="DiamondCharacterPoint.cs" />
     <Compile Include="DiamondEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,11 +29,11 @@ namespace DiamondKataTests
             //expeactedDiamond[2, 1] = 'A';
             //expeactedDiamond[1, 2] = 'A';
 
-            var expectedList = new List<DiamondCharacter>() {
-                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 0) },
-                new DiamondCharacter { Value = 'A', Coordinate = new Point(0, 1) },
-                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 2) },
-                new DiamondCharacter { Value = 'A', Coordinate = new Point(2, 1) }
+            var expectedList = new List<DiamondCharacterPoint>() {
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(1, 0) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(0, 1) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(1, 2) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(2, 1) }
             };
 
             var sut = new DiamondEngine('A');
@@ -42,7 +42,7 @@ namespace DiamondKataTests
             AssertLists(expectedList, actualList);
         }
 
-        
+
         [TestMethod]
         public void Test_B_Diamond()
         {
@@ -57,11 +57,11 @@ namespace DiamondKataTests
             //diamondBData[1, 0] = "B";
             //diamondBData[2, 1] = "A";
             //diamondBData[1, 2] = "B";
-            var expectedList = new List<DiamondCharacter>() {
-                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 0) },
-                new DiamondCharacter { Value = 'B', Coordinate = new Point(0, 1) },
-                new DiamondCharacter { Value = 'A', Coordinate = new Point(1, 2) },
-                new DiamondCharacter { Value = 'B', Coordinate = new Point(2, 1) }
+            var expectedList = new List<DiamondCharacterPoint>() {
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(1, 0) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(0, 1) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(1, 2) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(2, 1) }
             };
 
             var sut = new DiamondEngine('B');
@@ -70,27 +70,84 @@ namespace DiamondKataTests
             AssertLists(expectedList, actualList);
         }
 
-        /*
+
         [TestMethod]
         public void Test_C_Diamond()
         {
-            
-          //    A
-          //  B   B
-          //C       C
-          //  B   B
-          //    A
-          
 
-            var diamondCData = new string[4, 4];
+            //    A
+            //  B   B
+            //C       C
+            //  B   B
+            //    A
 
-            diamondCData[0, 1] = "A";
-            diamondCData[1, 0] = "B";
-            diamondCData[2, 1] = "A";
-            diamondCData[1, 2] = "B";
+
+            //var diamondCData = new string[4, 4];
+
+            //diamondCData[0, 1] = "A";
+            //diamondCData[1, 0] = "B";
+            //diamondCData[2, 1] = "A";
+            //diamondCData[1, 2] = "B";
+            var expectedList = new List<DiamondCharacterPoint>() {
+                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(0, 2) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 1) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 3) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(2, 0) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(2, 4) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(3, 1) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(3, 3) },
+                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(4, 2) },
+            };
+
+            var sut = new DiamondEngine('C');
+            var actualList = sut.Create();
+
+            AssertLists(expectedList, actualList);
+
+            var visualArray = sut.CreateArray();
         }
-    */
-        private static void AssertLists(List<DiamondCharacter> expectedList, IEnumerable<DiamondCharacter> actualList)
+
+        [TestMethod]
+        public void Test_D_Diamond()
+        {
+
+            //      A
+            //    B   B
+            //  C       C
+            //D           D
+            //  C       C
+            //    B   B
+            //      A
+
+
+            //var diamondCData = new string[4, 4];
+
+
+            var expectedList = new List<DiamondCharacterPoint>() {
+                new DiamondCharacterPoint { Value = 'D', Coordinate = new Point(0, 2) },
+                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(1, 2) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 1) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(2, 3) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(2, 0) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(3, 4) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(3, 1) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(4, 3) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(4, 3) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(5, 3) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(5, 3) },
+                new DiamondCharacterPoint { Value = 'D', Coordinate = new Point(5, 2) }
+            };
+
+            var sut = new DiamondEngine('D');
+            var actualList = sut.Create();
+            var visualArray = sut.CreateArray();
+
+            AssertLists(expectedList, actualList);
+
+
+        }
+
+        private static void AssertLists(List<DiamondCharacterPoint> expectedList, IEnumerable<DiamondCharacterPoint> actualList)
         {
             foreach (var expected in expectedList)
             {

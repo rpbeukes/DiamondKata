@@ -8,12 +8,16 @@ namespace DiamondKataConsole
 {
     public class DiamondEngine
     {
+        private readonly int _centre;
+        private CycleCharacter _cycleCharacter;
         private readonly char _patternChar;
+        private readonly Point _startCoordinate;
 
         public DiamondEngine(char diamondChar)
         {
             _patternChar = diamondChar;
-
+            _centre = _patternChar - 'A';
+            _startCoordinate = new Point(0, _patternChar - 'A');
         }
 
         private int MatrixCount
@@ -22,37 +26,78 @@ namespace DiamondKataConsole
             {
                 int count = _patternChar - 'A';
                 return count <= 1 ? 3 /* 'A' and 'B' only */
-                                     : count * 2 + 1;
+                                     : count * 2;
             }
         }
 
-        public IEnumerable<DiamondCharacter> Create()
+        public IEnumerable<DiamondCharacterPoint> Create()
         {
-            var list = new List<DiamondCharacter>();
+            _cycleCharacter = new CycleCharacter(_patternChar);
+            var list = new List<DiamondCharacterPoint>();
             switch (_patternChar)
             {
                 case 'A':
-                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(1, 0) });
-                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(0, 1) });
-                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(1, 2) });
-                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(2, 1) });
+                    list.Add(new DiamondCharacterPoint() { Value = _patternChar, Coordinate = new Point(1, 0) });
+                    list.Add(new DiamondCharacterPoint() { Value = _patternChar, Coordinate = new Point(0, 1) });
+                    list.Add(new DiamondCharacterPoint() { Value = _patternChar, Coordinate = new Point(1, 2) });
+                    list.Add(new DiamondCharacterPoint() { Value = _patternChar, Coordinate = new Point(2, 1) });
                     break;
                 case 'B':
-                    list.Add(new DiamondCharacter() { Value = 'A', Coordinate = new Point(1, 0) });
-                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(0, 1) });
-                    list.Add(new DiamondCharacter() { Value = 'A', Coordinate = new Point(1, 2) });
-                    list.Add(new DiamondCharacter() { Value = _patternChar, Coordinate = new Point(2, 1) });
+                    list.Add(new DiamondCharacterPoint() { Value = 'A', Coordinate = new Point(1, 0) });
+                    list.Add(new DiamondCharacterPoint() { Value = _patternChar, Coordinate = new Point(0, 1) });
+                    list.Add(new DiamondCharacterPoint() { Value = 'A', Coordinate = new Point(1, 2) });
+                    list.Add(new DiamondCharacterPoint() { Value = _patternChar, Coordinate = new Point(2, 1) });
                     break;
                 default:
-                    //for (int i = 0; i < MatrixCount; i++)
-                    //{
+                    for (int i = 0; i < MatrixCount + 1; i++)
+                    {
+                        var createSingelCharPoint = i % MatrixCount == 0;
+                        if (createSingelCharPoint)
+                        {
+                            //add one char
+                            var point = new Point(i, _centre);
+                            list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+                        }
+                        else
+                        {
+                            //add two chars
+                            var yVal = i % _centre;
+                            if (yVal != 0)
+                            {
+                                var point = new Point(i, _centre - yVal);
+                                list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
 
-                    //}
+                                point = new Point(i, _centre + yVal);
+                                list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+                            }
+                            else
+                            {
+                                var point = new Point(i, 0);
+                                list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+
+                                point = new Point(i, MatrixCount);
+                                list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+                            }
+                        }
+                        
+                        _cycleCharacter.Next();
+                    }
                     break;
             }
 
             return list;
         }
 
+        public char[,] CreateArray()
+        {
+            var array = new char[MatrixCount + 1, MatrixCount + 1];
+           
+            var list = Create();
+            foreach (var item in list)
+            {
+                array[item.Coordinate.Y, item.Coordinate.X] = item.Value;
+            }
+            return array;
+        }
     }
 }
