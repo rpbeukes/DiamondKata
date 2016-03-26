@@ -61,25 +61,16 @@ namespace DiamondKataTests
             //C       C
             //  B   B
             //    A
-            char[,] arr = new char[5, 5]
+            var arr = new char[,]
                               {
-                               { '\0','\0',  'A', '\0','\0' },
-                               { '\0', 'B', '\0', 'B' ,'\0' },
-                               {  'C','\0', '\0', '\0','C'  },
-                               { '\0', 'B', '\0',  'B','\0' },
-                               { '\0', '\0', 'A', '\0','\0' }
+                               { '\0','\0', 'A','\0','\0' },
+                               { '\0', 'B','\0', 'B','\0' },
+                               {  'C','\0','\0','\0', 'C' },
+                               { '\0', 'B','\0', 'B','\0' },
+                               { '\0','\0', 'A','\0','\0' }
                               };
-
-            var expectedList = new List<DiamondCharacterPoint>() {
-                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(0, 2) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 1) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 3) },
-                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(2, 0) },
-                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(2, 4) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(3, 1) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(3, 3) },
-                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(4, 2) },
-            };
+            
+            var expectedList = arr.ToDiamondCharacterPoint();
 
             var sut = new DiamondEngine('C');
             var actualList = sut.Create();
@@ -122,8 +113,10 @@ namespace DiamondKataTests
             AssertLists(expectedList, actualList);
         }
 
-        private static void AssertLists(List<DiamondCharacterPoint> expectedList, IEnumerable<DiamondCharacterPoint> actualList)
+        private static void AssertLists(IEnumerable<DiamondCharacterPoint> expectedList, IEnumerable<DiamondCharacterPoint> actualList)
         {
+            expectedList.Count().ShouldBe(actualList.Count());
+
             foreach (var expected in expectedList)
             {
                 var find = actualList.Where(actual => actual.Value == expected.Value && actual.Coordinate.Equals(expected.Coordinate));

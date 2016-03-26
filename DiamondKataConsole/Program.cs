@@ -12,10 +12,14 @@ namespace DiamondKataConsole
             {
                 Console.WriteLine("Print Diamond Pattern for: ");
                 input = Console.ReadLine().ToUpper();
-                if (input.Length >= 1)
+                if (input == "CLS")
+                {
+                    Console.Clear();
+                }
+                else if (input.Length >= 1 && input != "EXIT")
                 {
                     var chr = input.Substring(0, 1).ToCharArray()[0];
-                    if(chr >= 'A' && chr <= 'Z')
+                    if (chr >= 'A' && chr <= 'Z')
                     {
                         //print
                         var array = new DiamondEngine(chr).CreateArray();
@@ -35,3 +39,4 @@ namespace DiamondKataConsole
         }
     }
 }
+
