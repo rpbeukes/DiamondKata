@@ -1,5 +1,5 @@
 
-namespace DiamondKataConsole
+namespace DiamondKataLib
 {
     public class CycleCharacter
     {

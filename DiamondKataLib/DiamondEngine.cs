@@ -4,12 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace DiamondKataConsole
+namespace DiamondKataLib
 {
     public class DiamondEngine
     {
         private readonly int _centre;
-        private CycleCharacter _cycleCharacter;
+        private DiamondKataLib.CycleCharacter _cycleCharacter;
         private readonly char _patternChar;
         private readonly Point _startCoordinate;
 
@@ -32,7 +32,7 @@ namespace DiamondKataConsole
 
         public IEnumerable<DiamondCharacterPoint> Create()
         {
-            _cycleCharacter = new CycleCharacter(_patternChar);
+            _cycleCharacter = new DiamondKataLib.CycleCharacter(_patternChar);
             var list = new List<DiamondCharacterPoint>();
             switch (_patternChar)
             {

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace DiamondKataConsole
+namespace DiamondKataLib
 {
     public class DiamondCharacterPoint
     {

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using DiamondKataLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
-using DiamondKataConsole;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace DiamondKataTests
 {
@@ -17,18 +16,9 @@ namespace DiamondKataTests
         [TestMethod]
         public void Test_A_Diamond()
         {
-
             //  A
             //A   A
             //  A 
-
-            //var expeactedDiamond = new char[3, 3];
-
-            //expeactedDiamond[0, 1] = 'A';
-            //expeactedDiamond[1, 0] = 'A';
-            //expeactedDiamond[2, 1] = 'A';
-            //expeactedDiamond[1, 2] = 'A';
-
             var expectedList = new List<DiamondCharacterPoint>() {
                 new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(1, 0) },
                 new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(0, 1) },
@@ -46,17 +36,9 @@ namespace DiamondKataTests
         [TestMethod]
         public void Test_B_Diamond()
         {
-
             //  A
             //B   B
             //  A 
-
-            //var diamondBData = new string[3, 3];
-
-            //diamondBData[0, 1] = "A";
-            //diamondBData[1, 0] = "B";
-            //diamondBData[2, 1] = "A";
-            //diamondBData[1, 2] = "B";
             var expectedList = new List<DiamondCharacterPoint>() {
                 new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(1, 0) },
                 new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(0, 1) },
@@ -74,20 +56,11 @@ namespace DiamondKataTests
         [TestMethod]
         public void Test_C_Diamond()
         {
-
             //    A
             //  B   B
             //C       C
             //  B   B
             //    A
-
-
-            //var diamondCData = new string[4, 4];
-
-            //diamondCData[0, 1] = "A";
-            //diamondCData[1, 0] = "B";
-            //diamondCData[2, 1] = "A";
-            //diamondCData[1, 2] = "B";
             var expectedList = new List<DiamondCharacterPoint>() {
                 new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(0, 2) },
                 new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 1) },

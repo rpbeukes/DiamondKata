@@ -67,9 +67,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DiamondKataConsole\DiamondKataConsole.csproj">
-      <Project>{2ffadbdc-8333-4dc3-93eb-8f1126d2a7b0}</Project>
-      <Name>DiamondKataConsole</Name>
+    <ProjectReference Include="..\DiamondKataLib\DiamondKataLib.csproj">
+      <Project>{d9d64ac7-e7f4-4fe5-b23f-622fe8cfb510}</Project>
+      <Name>DiamondKataLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

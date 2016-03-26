@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DiamondKataConsole;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 
 namespace DiamondKataTests
@@ -11,7 +9,7 @@ namespace DiamondKataTests
         [TestMethod]
         public void CycleCharacter_Next_should_cycle_through_character()
         {
-            var cycleCharacter = new CycleCharacter('C');
+            var cycleCharacter = new DiamondKataLib.CycleCharacter('C');
             var nextChar = cycleCharacter.Next();
             nextChar.ShouldBe('B');
             nextChar = cycleCharacter.Next();
@@ -31,7 +29,7 @@ namespace DiamondKataTests
         [TestMethod]
         public void CycleCharacter_Next_should_not_Cycle_when_A()
         {
-            var cycleCharacter = new CycleCharacter('A');
+            var cycleCharacter = new DiamondKataLib.CycleCharacter('A');
             var nextChar = cycleCharacter.Next();
             nextChar.ShouldBe('A');
             nextChar = cycleCharacter.Next();
