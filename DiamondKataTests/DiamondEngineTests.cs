@@ -118,24 +118,19 @@ namespace DiamondKataTests
             //  C       C
             //    B   B
             //      A
-
-
-            //var diamondCData = new string[4, 4];
-
-
             var expectedList = new List<DiamondCharacterPoint>() {
-                new DiamondCharacterPoint { Value = 'D', Coordinate = new Point(0, 2) },
+                new DiamondCharacterPoint { Value = 'D', Coordinate = new Point(0, 3) },
                 new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(1, 2) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(1, 1) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(2, 3) },
-                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(2, 0) },
-                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(3, 4) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(3, 1) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(4, 3) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(4, 3) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(5, 3) },
-                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(5, 3) },
-                new DiamondCharacterPoint { Value = 'D', Coordinate = new Point(5, 2) }
+                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(1, 4) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(2, 1) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(2, 5) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(3, 0) },
+                new DiamondCharacterPoint { Value = 'A', Coordinate = new Point(3, 6) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(4, 1) },
+                new DiamondCharacterPoint { Value = 'B', Coordinate = new Point(4, 5) },
+                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(5, 2) },
+                new DiamondCharacterPoint { Value = 'C', Coordinate = new Point(5, 4) },
+                new DiamondCharacterPoint { Value = 'D', Coordinate = new Point(6, 3) }
             };
 
             var sut = new DiamondEngine('D');
@@ -143,8 +138,6 @@ namespace DiamondKataTests
             var visualArray = sut.CreateArray();
 
             AssertLists(expectedList, actualList);
-
-
         }
 
         private static void AssertLists(List<DiamondCharacterPoint> expectedList, IEnumerable<DiamondCharacterPoint> actualList)

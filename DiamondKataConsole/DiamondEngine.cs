@@ -64,11 +64,22 @@ namespace DiamondKataConsole
                             var yVal = i % _centre;
                             if (yVal != 0)
                             {
-                                var point = new Point(i, _centre - yVal);
-                                list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+                                if (i < _centre)
+                                {
+                                    var point = new Point(i, _centre - yVal);
+                                    list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
 
-                                point = new Point(i, _centre + yVal);
-                                list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+                                    point = new Point(i, _centre + yVal);
+                                    list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+                                }
+                                else
+                                {
+                                    var point = new Point(i, (_centre - i) * -1);
+                                    list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+
+                                    point = new Point(i, MatrixCount + (_centre - i));
+                                    list.Add(new DiamondCharacterPoint() { Value = _cycleCharacter.CurrentChar, Coordinate = point });
+                                }
                             }
                             else
                             {
@@ -91,7 +102,7 @@ namespace DiamondKataConsole
         public char[,] CreateArray()
         {
             var array = new char[MatrixCount + 1, MatrixCount + 1];
-           
+
             var list = Create();
             foreach (var item in list)
             {
