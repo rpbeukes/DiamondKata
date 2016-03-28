@@ -7,9 +7,12 @@ namespace DiamondKataConsole
     {
         static void Main(string[] args)
         {
+            Console.Title = "Diamond Kata";
+
             string input = "";
             while (input != "EXIT")
             {
+                Console.WriteLine("('exit' to quit; 'cls' to clear screen)");
                 Console.WriteLine("Print Diamond Pattern for: ");
                 input = Console.ReadLine().ToUpper();
                 if (input == "CLS")
@@ -36,6 +39,8 @@ namespace DiamondKataConsole
                     }
                 }
             }
+
+            Environment.Exit(0);
         }
     }
 }
